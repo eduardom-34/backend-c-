@@ -11,7 +11,7 @@ namespace Backend.Controllers
 
         private IPeopleService _peopleService;
 
-        public PeopleController(IPeopleService peopleService )
+        public PeopleController([FromKeyedServices("people2Service")] IPeopleService peopleService )
         {
             _peopleService = peopleService;
         }
