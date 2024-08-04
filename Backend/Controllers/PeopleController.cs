@@ -27,6 +27,21 @@ namespace Backend.Controllers
 
         public List<People> Get(string search) =>
             Repository.People.Where(p => p.Name.ToUpper().Contains(search.ToUpper())).ToList();
+
+        [HttpPost]
+        public IActionResult Add(People people)
+        {
+            if( string.IsNullOrEmpty(people.Name))
+            {
+                return BadRequest();
+            }
+
+
+            Repository.People.Add(people);
+
+            return NoContent();
+        }
+
     }
 
     public class Repository
