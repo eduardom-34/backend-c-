@@ -11,9 +11,9 @@ namespace Backend.Controllers
 
         private IPeopleService _peopleService;
 
-        public PeopleController()
+        public PeopleController(IPeopleService peopleService )
         {
-            _peopleService = new PeopleService();
+            _peopleService = peopleService;
         }
 
         [HttpGet("all")]
@@ -36,7 +36,8 @@ namespace Backend.Controllers
 
         public List<People> Get(string search) =>
             Repository.People.Where(p => p.Name.ToUpper().Contains(search.ToUpper())).ToList();
-
+        
+        //Validaciones
         [HttpPost]
         public IActionResult Add(People people)
         {
